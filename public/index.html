@@ -1,0 +1,134 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Reaction Counter WIP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  
+<style>
+#repmoji {
+  margin: auto;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.02);
+  color: #4a4a4a;
+  display: block;
+  padding: 1.25rem;
+  text-align: center;
+  max-width: 600px;
+  font-family: sans-serif;
+}
+#repmoji .repmoji-emoji {
+  background: none;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+  width: 50 px;
+  height: 100%;
+  display: inline-block;
+  text-align: center;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-bottom: 0.4rem;
+}
+#repmoji .repmoji-emoji span {
+  cursor: pointer;
+  line-height: 2rem;
+}
+#repmoji .repmoji-emoji span .repmoji-emoji-count {
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 0.375em;
+  color: #4a4a4a;
+  display: flex;
+  font-size: 0.75rem;
+  height: 2em;
+  justify-content: center;
+  line-height: 1.5;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  white-space: nowrap;
+  background-color: #485fc7;
+  color: #fff;
+}
+</style>
+
+  
+  
+  
+  
+
+</head>
+
+<body translate="no" >
+  <div id="repmoji">
+  <p>Share Your Reaction!</p>
+  <button class="repmoji-emoji" id="happy_but" aria-label="Happy Reaction"><span title="Happy">😀
+      <div class="repmoji-emoji-count" id="happy">0</div></span></button>
+  <button class="repmoji-emoji" id="love_but" tabindex="0" aria-label="Love face Reaction"><span title="Love">😍
+      <div class="repmoji-emoji-count" id="love">0</div></span></button>
+  <button class="repmoji-emoji" id="lol_but" tabindex="0" aria-label="Laugh Reaction"><span title="Laugh">🤣
+      <div class="repmoji-emoji-count" id="lol">0</div></span></button>
+</div>
+  
+  <script src='https://cdn.weckmann.me/wkmn.js'></script>
+      <script id="rendered-js" >
+var count_happy_el = document.getElementById("happy");
+var count_love_el = document.getElementById("love");
+var count_lol_el = document.getElementById("lol");
+fetch("https://count-api.glitch.me/")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    count_happy_el.innerHTML = data.happy;
+    count_love_el.innerHTML = data.love;
+    count_lol_el.innerHTML = data.lol;
+  })
+  .catch(function () {
+    console.log("Booo");
+  });
+
+function newVote(type) {
+  fetch("https://count-api.glitch.me/hit/" + type)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      count_happy_el.innerHTML = data.happy;
+      count_love_el.innerHTML = data.love;
+      count_lol_el.innerHTML = data.lol;
+    })
+    .catch(function () {
+      console.log("Booo");
+    });
+}
+
+document.getElementById("happy_but").addEventListener("click", (event) => {
+  newVote("happy");
+});
+document.getElementById("love_but").addEventListener("click", (event) => {
+  newVote("love");
+});
+document.getElementById("lol_but").addEventListener("click", (event) => {
+  newVote("lol");
+});
+    </script>
+
+  
+
+</body>
+
+</html>
+ 
