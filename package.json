@@ -1,0 +1,22 @@
+{
+  "name": "RepMoji",
+  "version": "0.0.1",
+  "description": "Reply with Emojis! Easily embed your self hosted RepMoji on your static website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "fastify": "^3.24.0"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": "https://github.com/clarkhacks/RepMoji.git"
+  },
+  "license": "GNU ",
+  "keywords": [
+    "repmoji"
+  ]
+}
